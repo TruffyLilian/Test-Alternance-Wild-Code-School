@@ -2,7 +2,7 @@ const express = require('express');
 const mainController = require('./controllers/mainController');
 
 const app = express();
-require('dotenv').config();
+
 //
 
 // cors
@@ -19,8 +19,11 @@ app.use((req, res, next) => {
   }
 });
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 // Nos Routes
-app.get('/', mainController.homePage);
+app.get('/crew', mainController.homePage);
+app.post('/crew', mainController.addCrewMate);
 
 const port = process.env.PORT || 3000;
 

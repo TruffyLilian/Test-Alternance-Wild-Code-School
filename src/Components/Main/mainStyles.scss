@@ -1,18 +1,28 @@
-main {
+.main {
   max-width: 960px;
   margin: 0 auto;
-}
 
-label {
-  display: block;
-  margin-bottom: 0.5em;
-}
 
-.new-member-form {
-  margin: 2em 0 4em 0;
-  text-align: center;
-}
+  &_form {
+    margin: 2em 0 4em 0;
+    text-align: center;
 
-.member-item {
-  padding: 0.25em 0;
+    &-label {
+      display: block;
+      margin-bottom: 0.5em;
+    }
+  }
+
+  &_member-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+
+    &--item {
+      width: 33%;
+      padding: 0.25em 0;
+    }
+  }
+
 }

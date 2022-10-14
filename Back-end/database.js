@@ -1,6 +1,7 @@
 const pg = require('pg');
+require('dotenv').config();
 
-const client = new pg.Client('postgresql://argonaute:argonaute@localhost/argonaute');
+const client = new pg.Client(process.env.PG_URL);
 
 client.connect();
 

@@ -5,11 +5,13 @@ import MainContainer from './container/MainContainer/MainContainer';
 
 function App() {
   return (
+
     <div className="App">
       <Header />
       <MainContainer />
       <Footer />
     </div>
+
   );
 }
 

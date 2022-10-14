@@ -6,19 +6,43 @@ import Main from '../../Components/Main/Main';
 // Props pas vraiment nécessaire mais habitude de rien mettre en 'dur'
 function MainContainer() {
   const [crewData, setCrewData] = useState([]);
-
-  const getCrewData = async () => {
-    const response = await axios.get('http://localhost:3002');
-    console.log(response);
-    setCrewData(response.data);
-  };
+  const [value, setValue] = useState('');
 
   useEffect(() => {
-    getCrewData();
+    const fetchData = async () => {
+      const response = await axios.get('http://localhost:3002/crew');
+      setCrewData(response.data);
+    };
+    fetchData();
   }, []);
+  console.log(crewData);
+
+  const addCrewMate = async (newCrewMate) => {
+    await axios.post('http://localhost:3002/crew', {
+      id: crewData.length + 1,
+      name: newCrewMate,
+    });
+    setCrewData([...crewData, { id: crewData.length + 1, name: newCrewMate }]);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const parsedValue = value.trim();
+    if (!parsedValue) {
+      return;
+    }
+    addCrewMate(parsedValue);
+    setValue('');
+  };
 
   return (
-    <Main data={crewData} />
+    <Main
+      data={crewData}
+      handleClick={addCrewMate}
+      onChange={(e) => setValue(e.target.value)}
+      onSubmit={(e) => handleSubmit(e)}
+      value={value}
+    />
   );
 }
 
