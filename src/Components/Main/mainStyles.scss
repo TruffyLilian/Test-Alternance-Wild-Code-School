@@ -14,13 +14,15 @@
   }
 
   &_member-list {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    border: 1px solid black;
+    grid-template-columns: repeat(3, 1fr);
+    display: grid;
 
 
     &--item {
-      width: 33%;
+      display: grid;
+      justify-items: center;
+      border: 1px solid red;
       padding: 0.25em 0;
     }
   }
