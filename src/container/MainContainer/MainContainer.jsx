@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable max-len */
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Main from '../../Components/Main/Main';
@@ -7,6 +7,7 @@ import Main from '../../Components/Main/Main';
 function MainContainer() {
   const [crewData, setCrewData] = useState([]);
 
+  // Permet de faire une requete GET pour recuperer tout les membres
   const fetchData = async () => {
     const response = await axios.get('http://localhost:3002/crew');
     setCrewData(response.data);
@@ -16,12 +17,15 @@ function MainContainer() {
     fetchData();
   }, []);
 
+  // Permet de faire une requete POST pour ajouter un nouveau membre
   const addCrewMate = async (newCrewMate) => {
     await axios.post('http://localhost:3002/crew', {
       id: crewData.length + 1,
       name: newCrewMate,
     });
     setCrewData([...crewData, { id: crewData.length + 1, name: newCrewMate }]);
+    // On refait une requete GET un fois une personne ajouter pour pouvoir avoir nos personne rangées
+    // par ordre Alphabétique
     fetchData();
   };
 

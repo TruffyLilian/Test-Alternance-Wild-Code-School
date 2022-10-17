@@ -1,9 +1,9 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable max-len */
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './mainStyles.scss';
-// Props pas vraiment nécessaire mais habitude de rien mettre en 'dur'
+// Props { crewTitle, crewSection, label } pas vraiment nécessaire mais habitude de rien mettre en 'dur'
 function Main({
   data, crewTitle, crewSection, label, addCrewMate,
 }) {
@@ -15,13 +15,14 @@ function Main({
       inputRef.current.focus();
     }
   });
-
+  // On récupere l'event du submit on trim la value pour voir si on a entré un text et on enleve les espace
   const handleSubmit = (e) => {
     e.preventDefault();
     const parsedValue = value.trim();
     if (!parsedValue) {
       return;
     }
+    // on appele la fonction addCrewMate du mainContainer qui va s'occuper de gerer les logique
     addCrewMate(parsedValue);
     setValue('');
   };
