@@ -3,7 +3,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Main from '../../Components/Main/Main';
 
-// Props pas vraiment nécessaire mais habitude de rien mettre en 'dur'
 function MainContainer() {
   const [crewData, setCrewData] = useState([]);
 
